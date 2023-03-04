@@ -1,375 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,900;1,400&family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
    <style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;   
+  }
+  body{
+    background-color: black;
+    color: white;
+  }
+  
 
-    body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: black;
-  color: white;
-  width : 100%;
-  height: 400px;
+  #heading1{
+    margin-left: 3%;
+   
+  }
+  
+  .navbar{
+    width:100%;
+    line-height: 2;
+    margin: auto;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+    padding: 5px 0;
+    background-color: #111;
+    color: white;
+  
+  }
+  .navbar #createbtn{
+    border: none;
+    padding: 8px;
+    background-color: black;
+    color: white;
+    font-weight: 600;
 }
-
-header {
-  background-color: #111;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-}
-
-#posts-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-.blog-post {
-  width: 30%;
-  background-color: #f2f2f2;
-  margin-bottom: 20px;
-  padding: 10px;
-}
-textarea{
-    width: 700px;
-}
-.hidden {
-  display: none;
-}
-
-#modal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 700px;
-
-  background-color: black;
-}
-
-#modal-content {
-  background-color: #fff;
-  margin:  auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 55%;
-}
-
-#modal-close,
-#edit-modal-close {
-  display: block;
-  margin-left: auto;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-#edit-modal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-#edit-modal-content {
-  background-color: #fff;
-}/* Blog post styles */
-.blog-post {
-  border: 1px solid black;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.blog-post-title {
-  margin-top: 0;
-  width: 800px;
-  background-color: #000;
-  color: white;
-  border: 1px solid black;
-}
-
-.edit-btn, .delete-btn {
-  margin-top: 10px;
-}
-
-/* Modal styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 40%;
-  height: 40%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-  background-color: white;
-  margin: 15% auto;
-  padding: 10px;
-  border: 1px solid black;
-  width: 40%;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-    /* Mobile styles */
-    @media screen and (max-width: 600px){
-
-    h1{
-      font-size: 15px;
+  
+  .link-container{
+    display: flex;
+    list-style: none;
+  }
+  
+  .link-items a{
+    padding: 10px;
+    margin-left:10px ;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .create-blog{
+    border: none;
+    background-color: white;
+    font-weight: 600;
+  
+  }
+  
+  input{
+    padding:10px;
+    font-size: 17px;
+  }
+  textarea{
+    padding:10px;
+    font-size: 17px;
+  
+  }
+  button{
+    padding: 2px 5px;
+    margin-right: 10px;
+  }
+  .close{
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    font-size: 20px;
+   
+  
+  }
+  /* ------------modal------------ */
+  
+  
+  .modal{
+   
+    position: fixed;
+    top:0px;
+    bottom:0px;
+    right:0px;
+    left:0px;
+    opacity: 0.97;
+    background-color: rgb(220, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-edit{
+   
+    position: fixed;
+    top:0px;
+    bottom:0px;
+    right:0px;
+    left:0px;
+   
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-items{
+    background-color:white;
+    color: white;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    gap:10px;
+    padding: 20px 40px;
+   
+  }
+  
+  .cross{
+    display: flex;
+    justify-content:space-between ;
+  }
+  
+  .hide{
+    display: none;
+  }
+  
+  
+  /* -------blog--- */
+  .blog{
+    /* margin-top:50px; */
+    margin: 50px auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+  
+  }
+  .blogItems{
+    border: 2px solid white;
+    padding: 10px 20px;
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    margin:0 10px;
+  }
+  
+  .titleName{
+    font-size: 25px;
+    font-weight: 500;
+  }
+  .btnTime{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  /* ---media query---- */
+  @media screen and (max-width: 768px) {
+    .modal-items {
+      margin: 20% auto;
     }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 30%;
-      height: 30%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-    }   
     
-    body {
-       font-size: 16px;
-      }
+    .blog{
+      width: 100%;
     }
-      
-      /* Tablet styles */
-      @media (min-width: 768px) {
-        body {
-          font-size: 18px;
-        }
-      }
-      
-      /* Desktop styles */
-      @media (min-width: 992px) {
-        body {
-          font-size: 20px;
-        }
-      }
-
+    
+   
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container {
+      padding: 10px;
+    }
+    
+    .blog {
+      padding: 10px;
+    }
+   
+    .header {
+        margin-top: 60px;
+        width: 100%;
+        height: 50vh;
+        background: url(BG.jpeg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    
+    }
+    .header .heading{
+        font-size: 1rem;
+        margin-top:-50px ;
+        font-weight: 900;
+        line-height: 40px;
+        border: 2px solid black;
+        padding: 2px;
+    
+    }
+    
+    .small{
+        display: block;
+        font-size: 1rem;
+        margin-right:10px ;
+    
+    }
+    .no-fill{
+        font-style: italic;
+        color: transparent;
+        -webkit-text-stroke:2px black;
+        font-size: 2.5rem;
+        margin-left: 30px;
+    
+    }
+    /* .heading{
+        width:50%;
+        ge
+    } */
+    
+  }
    </style>
-  </head>
-  <body>
+    <title>Tie up Apron-food blogging</title>
+</head>
+<body>
+    <div class="container">
+    <nav class="navbar">
+		<h1 id="heading1"style="color: white">Blogging Website</h1>
+        <ul class="link-container">
+            <li class="link-items  "> <button id="createbtn" class="create-blog"> CREATE A POST </button> </li>
+           
+        </ul>
 
-    <header>
+    </nav>
 
-      <h1>Blogging websites</h1>
-      <button id="createBlogBtn"style= "background-color: black; color: white;font-size: 25px;border-color: white;padding: 10px;">Create a Blog</button>
-    </header>
+       <!-- ------modal create post-------- -->
+       <div class="modal hide ">
+        <div class="modal-items">
+            <div class="cross">
+             <h1 style="color: black;">Create A Post  </h1> 
+             <span> 
+              <button class="close">    X</button> </span>
+         </div>
+         <input type="text" id="topic" placeholder="Enter your heading...">
+         <textarea name="" id="description" cols="20" rows="5" placeholder="Enter your Blog post..."></textarea>
 
-    <main id="posts-container">
-
-      <!--Blog posts will be dynamically added here -->
-      <div class="blog-post"style="width:200px; border: 1px solid white; background-color: black;">
-      <h2 class="blog-post-title"style="height:150px;width:150px;">My heading</h2>
-      <p class="blog-post-description"style="width: 150px;"></p>
-      <button class="edit-btn"style="width: 100px;height: 30px;">Edit</button>
-      <button class="delete-btn"style="width: 100px;height: 30px;">Delete</button>
-       </div>
-    </main>
-    
-     <!--creating log post-->
-    <div id="myModal" class="hidden">
-      
-      <div id="modal-content">
-        <span id="close">&times;</span>
-        <h2 style="color: black;">Create A Post</h2>
-        <form>
-          <input type="text" id="blogTitle" name="title"placeholder="Enter your heading"style="height: 30px; width:700px;"><br><br>
-          <textarea id="blogDescription" name="description"style= "height:150px; style=width:150px;">Enter your blog here...</textarea><br><br>
-          <button id="save-post-button" type="submit"style="height: 30px;">Publish post</button>
-          <button id="cancel-button" type="submit"style="height: 30px;">Cancel post</button>
-         </form>
-      </div>
+         <div class="btns">
+            <button class="publish btn" onclick="createPost()">Publish post</button>
+            <button class="cancel btn">Cancel post</button>
+        </div>
     </div>
-    
-   
+</div>
+<!-- --------modal editing----- -->
+<div class="modal-edit hide">
+    <div class="modal-items">
+        <div class="cross">
+            <h1 style="color: black;">Edit a post  </h1> <span> <button  class="close" onclick="closebtn()">X</button> </span>
+     </div>
+     <input type="text" id="edit-topic" placeholder="Enter your heading...">
+     <textarea name="" id="edit-description" cols="20" rows="5" placeholder="Enter your Blog post..."></textarea>
 
-    <!-- Edit modal -->
-    <div id="edit-modal" class="modal">
-       <div class="modal-content">
-          <span class="close">&times;</span>
-   
-            <form>
-               <h2 style="color:black;">Edit A Post</h2>
-    
-               <input type="text" id="edit-title" name="edit-title"placeholder="My heading"style="height:30px; width:450px;"><br><br>
-               <textarea id="edit-description" name="edit-description"style="height:250px; width: 450px;"></textarea><br><br>
-               <button type="submit" id="save-btn"style="height:30px; width: 100px;">Save</button>
-               <button type="delete" id="delete-btn"style="height:30px; width: 100px;">Delete</button>
-            </form>
-       </div>
+     <div class="btns">
+        <button class="btn" id="edit-post-button" onclick="saveEditPost()">Save post</button>
+        <button class="cancel btn" id="delete-post-button" onclick="deletePost()">Delete post</button>
     </div>
-
-    
-    <!--button id="editBlogBtn"style= "background-color: black; color: white;font-size: 25px;">Edit</button>
-    <div id="myModal1" class="hidden">
-      <div id="modal1-content">
-        <span id="close">&times;</span>
-        <h2 style="color: black;">Edit a Blog Post</h2>
-        <form>
-       
-          <input type="text" id="blogTitle" name="title"placeholder="My heading"style="height: 30px; width:700px;"><br><br>
-        
-          <textarea id="blogDescription" name="description"style= height:200px; style=width:200px;></textarea><br><br>
-          <button id="edit-post-button" type="submit"style="height: 30px;">Edit post</button>
-          <button id="delete-post-button" type="submit"style="height: 30px;">Delete post</button>
-        </form>
-      </div>
-    </div-->
-    
-<div id="blogPosts">
 
 </div>
+</div>
 
-<script>
-         // Get the modal
-        const modal = document.getElementById("myModal");
 
-        // Get the button that opens the modal
-        const btn = document.getElementById("createBlogBtn");
+<!-- ----------blog page------ -->
+<div class="blog" id="showPost">
 
-        // Get the <span> element that closes the modal
-        const span = document.getElementsByClassName("close")[0];
+</div>
+</div>
 
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-        modal.style.display = "block";
-        }
 
-       // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-        modal.style.display = "none";
-         }
+    <script>
+        const createBlog = document.querySelector(".create-blog");
+const modal =document.querySelector(".modal");
+const modalEdit =document.querySelector(".modal-edit");
 
-         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == modal) {
-        modal.style.display = "none";
-         }
-        }
+const publish=document.querySelector(".publish");
+const cancel =document.querySelector(".cancel");
+const closeEl =document.querySelector(".close");
+const topic=document.querySelector('#topic');
+const description=document.querySelector('#description');
+const blogEl =document.querySelector(".blog")
 
-        // Handle form submission
-        const form = document.querySelector('form');
-        form.addEventListener('submit', function(event)
-         {
-        event.preventDefault();
 
-        const title = document.getElementById('blogTitle').value;
-        const description = document.getElementById('blogDescription').value;
+let blogData=[];
 
-        addBlogPost(title, description);
 
-        modal.style.display = "none";
-        document.querySelector('form').reset();
-        });
 
-        // Add a new blog post to the page
-       function addBlogPost(title, description)
-        {
-       const blogPostsDiv = document.getElementById('blogPosts');
-       const newBlogPostDiv = document.createElement('div');
+function createModal(){
+    modal.classList.remove('hide');
 
-       newBlogPostDiv.innerHTML = '<h2 style="">' + title + '</h2><p>' + description + '</p>';
-       blogPostsDiv.appendChild(newBlogPostDiv);
-       }
+}
+
+
+
+
+function cancelBlog() {
+    topic.value="";
+    description.value="";
+    modal.classList.add('hide');
+}
+
+function abc(){
+    alert("hiiii");
+}
+
+
+
+
+createBlog.addEventListener('click',createModal);
+// publish.addEventListener('click',publishBlog)
+cancel.addEventListener('click',cancelBlog)
+closeEl.addEventListener('click',cancelBlog)
+// editButton.addEventListener('click',abc)
+
+function createPost(){
+    const title = document.getElementById("topic").value;
+    const description = document.getElementById("description").value;
+    const now = new Date();
+const date = now.toLocaleDateString();
+const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+const createdAt = `Created At: ${date} at ${time}`;
+
+    blogData.push({
+        id: blogData.length + 1,
+        title,
+        description,
+        createdAt
+
+    });
+
+    modal.classList.add('hide');
+
+    showAllPosts();
+
+    document.getElementById("topic").value = "";
+    document.getElementById("description").value = "";
+}
+
+function editPost(id){
+    modalEdit.classList.remove('hide');
+    const blog = blogData.find(s => s.id === id);
+
+    document.getElementById("edit-topic").value = blog.title;
+    document.getElementById("edit-description").value = blog.description;
+
+    document.getElementById("edit-post-button").setAttribute("data", id);
+    document.getElementById("delete-post-button").setAttribute("data", id);
+}
+
+function saveEditPost() {
+    const id = Number(document.getElementById("edit-post-button").getAttribute("data"));
+    const title = document.getElementById("edit-topic").value;
+    const description = document.getElementById("edit-description").value;
+    const now = new Date();
+    const date = now.toLocaleDateString();
+    const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    const createdAt = `Last updated At: ${date} at ${time}`;
+
+    blogData.find(s => s.id === id).title = title;
+    blogData.find(s => s.id === id).description = description;
+    blogData.find(s => s.id === id).createdAt = createdAt;
+
+    modalEdit.classList.add('hide');
+
+    showAllPosts();
+
+    document.getElementById("topic").value = "";
+    document.getElementById("description").value = "";
+}
+
+function deletePost(id){
+    let blogId = id;
+
+    if(!blogId)
+        blogId = Number(document.getElementById("delete-post-button").getAttribute("data"));
+
+    blogData = blogData.filter(s => s.id !== blogId);
+
+    modalEdit.classList.add('hide');
+    showAllPosts();
+
+}
+function closebtn()
+{
+   
+    modalEdit.classList.add('hide');
+    showAllPosts();
+}
+function showAllPosts(){
+    const showPostWrapper = document.getElementById("showPost");
+
+    showPostWrapper.innerHTML = "";
+
+    blogData.map((blog) => {
+
+        showPostWrapper.innerHTML += `=
+        <div class="blogItems">
+        <div class="titleName">${blog.title}</div>
+        <div class="DescName">${blog.description}</div>
+        <div class=btnTime>
+        <div>
+        <button class="editButton" onclick="editPost(${blog.id})">Edit Post</button>
+        <button onclick="deletePost(${blog.id})">Delete Post</button>
+        </div>
         
-       // cancel the post
-       const cancelBtn = document.getElementById("cancel-button");
-    
-
-      // add event listener to cancel button
-       cancelBtn.addEventListener("click", (event) => {
-       event.preventDefault();
-
-      // clear input fields
-        document.getElementById("title").value = "";
-       document.getElementById("description").value = "";
-
-       // hide modal
-        modal.classList.add("hidden");
-       });
-
-       // Get edit modal and close button
-        const editModal = document.getElementById("edit-modal");
-        const editModalCloseBtn = editModal.querySelector(".close");
-
-      // Get blog posts and edit/delete buttons
-         const blogPosts = document.querySelectorAll(".blog-post");
-         const editBtns = document.querySelectorAll(".edit-btn");
-         const deleteBtns = document.querySelectorAll(".delete-btn");
-
-      // Add event listeners for edit/delete buttons
-         editBtns.forEach((btn, i) =>
-          {
-         btn.addEventListener("click", () => {
-
-        // Fill in form inputs with existing values
-        const title = blogPosts[i].querySelector(".blog-post-title").textContent;
-        const description = blogPosts[i].querySelector(".blog-post-description").textContent;
-        const editTitleInput = editModal.querySelector("#edit-title");
-        const editDescriptionInput = editModal.querySelector("#edit-description");
-
-        editTitleInput.value = title;
-        editDescriptionInput.value = description;
-
-         // Show edit modal
-         editModal.style.display = "block";
-           });
-        });
-
-        deleteBtns.forEach((btn, i) => {
-        btn.addEventListener("click", () => {
-
-        // Remove blog post from page
-          blogPosts[i].remove();
-          });
-        });
-
-       // Add event listener for edit modal close button
-          editModalCloseBtn.addEventListener("click", () => {
-          editModal.style.display = "none";
-          });
-
-        // Add event listener for form submit button
-          const saveBtn = editModal.querySelector("#save-btn");
-          saveBtn.addEventListener("click", (e) => {
-          event.preventDefault();
-          });
-         
-          
+        <div> ${blog.createdAt}  </div>
+        </div>
+        </div>
+        `;
+    });
+}
     </script>
-  </body>
+</body>
 </html>
